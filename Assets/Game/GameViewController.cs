@@ -88,6 +88,7 @@ namespace Game
 
             GameResult roundResult = logic.GetRoundResult(playerDecision, opponentDecision);
         
+            yield return new WaitForSeconds(ANIMATION_DURATION);
             yield return ShowRoundResult(roundResult);
 
             UpdateScore(roundResult);
@@ -97,7 +98,7 @@ namespace Game
             
             HideRoundResult();
             // TODO localization
-            opponentDecisionText.text = "ваш ход";
+            opponentDecisionText.text = "Select your figure:";
             buttonsLayout.SetAllTogglesOff();
             buttonsLayout.SetInteractable(true);
         }
@@ -107,20 +108,21 @@ namespace Game
             playerScore += roundResult != GameResult.PlayerLose ? 1 : 0;
             opponentScore += roundResult != GameResult.PlayerWins ? 1 : 0;
 
-            string postfix = "";
-            if (playerScore > opponentScore)
-            {
-                // in real app need localization
-                postfix = "в вашу пользу";
-            }
+            // string postfix = "";
+            // if (playerScore > opponentScore)
+            // {
+            //     // in real app need localization
+            //     postfix = "в вашу пользу";
+            // }
 
-            if (playerScore < opponentScore)
-            {
-                // in real app need localization
-                postfix = "в пользу ИИ";
-            }
+            // if (playerScore < opponentScore)
+            // {
+            //     // in real app need localization
+            //     postfix = "в пользу ИИ";
+            // }
 
-            scoreText.text = string.Format("{0}:{1} {2}", playerScore, opponentScore, postfix);
+            //scoreText.text = string.Format("{0}:{1} {2}", playerScore, opponentScore, postfix);
+            scoreText.text = $"{playerScore}:{opponentScore}";
         }
 
         private void HideRoundResult()

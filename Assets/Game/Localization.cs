@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using Game.Utils;
 
 namespace Game
 {
+    // In real-world game need to read from external source
+    // TODO For an interview-game using string constants, separate from logic, is enough
     public class Localization
     {
         public static string Localize(HandDecision handDecision)
@@ -10,13 +13,13 @@ namespace Game
             switch (handDecision)
             {
                 case HandDecision.Paper:
-                    return "paper";
+                    return "Opponent selects paper";
                 case HandDecision.Scissors:
-                    return "scissors";
+                    return "Opponent selects scissors";
                 case HandDecision.Stone:
-                    return "stone";
+                    return "Opponent selects stone";
                 default:
-                    AssertExt.Fail("value not localized: " + handDecision);
+                    Debug.Assert(false, "value not localized: " + handDecision);
                     return handDecision.ToString();
             }
         }
